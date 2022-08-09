@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import './App.css';
+import Button from './components/Button';
+import TextField from './components/TextField';
+import WeatherResults from './components/WeatherResults';
 
 function App() {
+  const titleStyle = css`
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+  `;
+
+  const searchContainerStyle = css`
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    margin-bottom: 24px;
+  `;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p css={titleStyle}>お天気チェック</p>
+      <div css={searchContainerStyle}>
+        <TextField />
+        <TextField />
+        <Button text="検索" />
+      </div>
+      <WeatherResults />
     </div>
   );
 }
