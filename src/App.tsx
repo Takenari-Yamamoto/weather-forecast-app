@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useWeatherInfo } from './api/useWeatherInfo';
 import './App.css';
 import Button from './components/Button';
 import TextField from './components/TextField';
@@ -18,6 +19,9 @@ function App() {
     flex-direction: column;
     margin-bottom: 24px;
   `;
+
+  const { fetchWeatherInfo } = useWeatherInfo();
+
   return (
     <div className="App">
       <p css={titleStyle}>お天気チェック</p>

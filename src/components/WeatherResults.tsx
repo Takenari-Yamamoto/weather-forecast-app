@@ -3,10 +3,6 @@ import { memo } from 'react';
 import Button from './Button';
 import { css } from '@emotion/react';
 
-const WeatherCardStyle = css`
-  display: flex;
-`;
-
 const WeatherResults = () => {
   const dateStyle = css`
     font-weight: bold;
