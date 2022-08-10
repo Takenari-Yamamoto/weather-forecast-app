@@ -13,6 +13,7 @@ export const useWeatherInfo = () => {
         params: {
           lat,
           lon,
+          days: 7,
           key: process.env.REACT_APP_WEATHER_KEY,
         },
       });
