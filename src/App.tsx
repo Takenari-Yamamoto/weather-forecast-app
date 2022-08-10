@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useWeatherInfo } from './api/useWeatherInfo';
 import './App.css';
 import Button from './components/Button';
 import TextField from './components/TextField';
 import WeatherResults from './components/WeatherResults';
+import { useSearchWeather } from './hooks/useSearchWeather';
 
 function App() {
   const titleStyle = css`
@@ -20,17 +20,21 @@ function App() {
     margin-bottom: 24px;
   `;
 
-  const { fetchWeatherInfo } = useWeatherInfo();
+  const { handleInputLat, handleInputLon, search, weatherList } =
+    useSearchWeather();
 
   return (
     <div className="App">
       <p css={titleStyle}>お天気チェック</p>
       <div css={searchContainerStyle}>
-        <TextField />
-        <TextField />
-        <Button text="検索" />
+        <TextField handleInput={handleInputLat} placeholder="緯度（20 ~ 46）" />
+        <TextField
+          handleInput={handleInputLon}
+          placeholder="経度（122 ~ 154）"
+        />
+        <Button text="検索" onClick={search} />
       </div>
-      <WeatherResults />
+      <WeatherResults results={weatherList} />
     </div>
   );
 }

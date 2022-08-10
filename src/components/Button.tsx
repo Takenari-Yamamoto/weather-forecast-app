@@ -2,12 +2,16 @@
 import { css } from '@emotion/react';
 import { memo } from 'react';
 
-type Props = {
+type ButtonProps = JSX.IntrinsicElements['button'];
+
+type OtherProps = {
   text: string;
 };
 
+type Props = ButtonProps & OtherProps;
+
 const Button = (props: Props) => {
-  const { text } = props;
+  const { text, ...buttonProps } = props;
   const buttonStyle = css`
     height: 40px;
     border-radius: 4px;
@@ -20,7 +24,11 @@ const Button = (props: Props) => {
       background-color: #d68d05;
     }
   `;
-  return <button css={buttonStyle}>{text}</button>;
+  return (
+    <button css={buttonStyle} {...buttonProps}>
+      {text}
+    </button>
+  );
 };
 
 export default memo(Button);

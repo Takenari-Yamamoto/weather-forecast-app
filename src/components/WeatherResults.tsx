@@ -2,8 +2,14 @@
 import { memo } from 'react';
 import Button from './Button';
 import { css } from '@emotion/react';
+import { WeatherInfo } from '../types/weather';
 
-const WeatherResults = () => {
+type Props = {
+  results: WeatherInfo[] | null;
+};
+
+const WeatherResults = (props: Props) => {
+  const { results } = props;
   const dateStyle = css`
     font-weight: bold;
     font-size: 24px;
@@ -14,6 +20,7 @@ const WeatherResults = () => {
     border: 2px solid #000000;
     padding: 16px;
     margin-bottom: 16px;
+    justify-content: center;
   `;
 
   const cardStyle = css`
@@ -29,14 +36,22 @@ const WeatherResults = () => {
   `;
   return (
     <>
-      <p css={dateStyle}>4月15日</p>
-      <div css={weatherResultsStyles}>
-        <div css={cardStyle}>
-          <p>icon</p>
-          <p>説明</p>
-          <p>max / min</p>
-        </div>
-      </div>
+      {results?.map((result, i) => {
+        return (
+          <div key={i}>
+            <p css={dateStyle}>{result.datetime}</p>
+            <div css={weatherResultsStyles}>
+              <div css={cardStyle}>
+                <p>{result.weather.icon}</p>
+                <p>{result.weather.description}</p>
+                <p>
+                  {result.max_temp} / {result.min_temp}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
       <div css={buttonsStyle}>
         <Button text="前日へ" />
         <Button text="翌日へ" />
