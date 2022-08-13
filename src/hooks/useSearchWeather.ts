@@ -1,8 +1,11 @@
 import { useCallback, useState } from 'react';
-import { useWeatherInfo } from '../api/useWeatherInfo';
+import { WeatherInfoRepo } from '../api/WeatherInfoRepo';
+import { WeatherInfo } from '../types/weather';
 
 export const useSearchWeather = () => {
-  const { fetchWeatherInfo, weatherList } = useWeatherInfo();
+  const { fetchWeatherInfo } = WeatherInfoRepo();
+  const [weatherList, setWeatherList] = useState<WeatherInfo[] | null>(null);
+
   // 緯度
   const [lat, setLat] = useState<number | null>(null);
   const handleInputLat = useCallback((e: string) => setLat(Number(e)), []);
@@ -10,14 +13,22 @@ export const useSearchWeather = () => {
   const [lon, setLon] = useState<number | null>(null);
   const handleInputLon = useCallback((e: string) => setLon(Number(e)), []);
 
-  const search = () => {
+  // 検索ボタン押下時の処理
+  const search = async () => {
     if (!lat || !lon) {
       return;
     }
-    fetchWeatherInfo({
-      lat,
-      lon,
-    });
+
+    try {
+      const res = await fetchWeatherInfo({
+        lat,
+        lon,
+      });
+      setWeatherList(res);
+    } catch (e) {
+      console.error('API error', e);
+      alert('検索に失敗しました。');
+    }
   };
 
   return {
