@@ -20,7 +20,7 @@ function App() {
     margin-bottom: 24px;
   `;
 
-  const { handleInputLat, handleInputLon, search, weatherList } =
+  const { handleInputLat, handleInputLon, search, weatherList, cityName } =
     useSearchWeather();
 
   return (
@@ -34,7 +34,7 @@ function App() {
         />
         <Button text="検索" onClick={search} />
       </div>
-      <WeatherResults results={weatherList} />
+      <WeatherResults results={weatherList} cityName={cityName} />
     </div>
   );
 }

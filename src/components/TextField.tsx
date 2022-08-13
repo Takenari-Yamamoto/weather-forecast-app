@@ -20,7 +20,7 @@ const TextField: React.FC<Props> = (props) => {
   return (
     <input
       css={textFieldStyle}
-      type="text"
+      type="number"
       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
         handleInput(e.target.value)
       }

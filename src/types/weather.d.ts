@@ -1,5 +1,5 @@
 export interface Weather {
-  data: WeatherInfo[] | null;
+  data: WeatherInfo[];
   city_name: string;
   lon: number;
   timezone: string;
