@@ -24,6 +24,7 @@ const Button = (props: Props) => {
 
     &:hover {
       background-color: #d68d05;
+      transition: 0.3s;
     }
   `;
 
@@ -33,6 +34,12 @@ const Button = (props: Props) => {
     color: #006fe7;
     border: 1px solid #006fe7;
     font-size: 16px;
+
+    &:hover {
+      border: 1px solid #0066d3;
+      background-color: #e3f1ff;
+      transition: 0.3s;
+    }
   `;
 
   const buttonStyle = () => {

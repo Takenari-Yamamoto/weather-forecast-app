@@ -6,6 +6,7 @@ export const useSearchWeather = () => {
   const { fetchWeatherInfo } = WeatherInfoRepo();
   const [cityName, setCityName] = useState('');
   const [weatherList, setWeatherList] = useState<WeatherInfo[]>([]);
+  const [isLoading, setLoading] = useState(false);
 
   // 緯度
   const [lat, setLat] = useState<number | null>(null);
@@ -31,6 +32,7 @@ export const useSearchWeather = () => {
       return;
     }
 
+    setLoading(true);
     try {
       const res = await fetchWeatherInfo({
         lat,
@@ -42,6 +44,7 @@ export const useSearchWeather = () => {
       console.error('API error', e);
       alert('検索に失敗しました。');
     }
+    setLoading(false);
   };
 
   return {
@@ -50,5 +53,6 @@ export const useSearchWeather = () => {
     search,
     weatherList,
     cityName,
+    isLoading,
   };
 };
