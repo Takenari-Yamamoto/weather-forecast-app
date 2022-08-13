@@ -17,6 +17,7 @@ export const useSearchWeather = () => {
   // 検索ボタン押下時の処理
   const search = async () => {
     if (!lat || !lon) {
+      alert('経度と緯度を入力してください。');
       return;
     }
 

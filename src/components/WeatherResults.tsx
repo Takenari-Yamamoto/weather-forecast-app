@@ -56,6 +56,10 @@ const WeatherResults = (props: Props) => {
     }
   `;
 
+  const sliderStyle = css`
+    cursor: pointer;
+  `;
+
   const buttonContainerStyle = css`
     display: flex;
     justify-content: space-between;
@@ -91,7 +95,7 @@ const WeatherResults = (props: Props) => {
       <Slider ref={sliderRef} {...settings}>
         {results.map((result, i) => {
           return (
-            <div key={i}>
+            <div css={sliderStyle} key={i}>
               <p css={dateStyle}>{formatDate(result.datetime)}</p>
               <div css={weatherResultsStyles}>
                 <div css={cardStyle}>

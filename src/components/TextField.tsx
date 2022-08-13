@@ -11,7 +11,7 @@ type OtherProps = {
 type Props = InputProp & OtherProps;
 
 const textFieldStyle = css`
-  height: 40px;
+  height: 44px;
   border: 2px solid #a0a0a0;
 `;
 

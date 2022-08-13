@@ -1,39 +1,33 @@
 /** @jsxImportSource @emotion/react */
-import './App.css';
 import { css } from '@emotion/react';
-import Button from './components/Button';
-import TextField from './components/TextField';
+/*  Components */
+import Title from './components/Title';
+import SearchField from './components/SearchField';
 import WeatherResults from './components/WeatherResults';
+/* Hooks */
 import { useSearchWeather } from './hooks/useSearchWeather';
 
 function App() {
-  const titleStyle = css`
-    font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 8px;
-  `;
-
-  const searchContainerStyle = css`
+  const containerStyle = css`
+    padding: 40px;
+    max-width: 1000px;
     display: flex;
-    gap: 12px;
     flex-direction: column;
-    margin-bottom: 24px;
+    margin: 0 auto;
+    text-align: center;
   `;
 
   const { handleInputLat, handleInputLon, search, weatherList, cityName } =
     useSearchWeather();
 
   return (
-    <div className="App">
-      <p css={titleStyle}>お天気チェック</p>
-      <div css={searchContainerStyle}>
-        <TextField handleInput={handleInputLat} placeholder="緯度（20 ~ 46）" />
-        <TextField
-          handleInput={handleInputLon}
-          placeholder="経度（122 ~ 154）"
-        />
-        <Button variant="search" text="検索" onClick={search} />
-      </div>
+    <div css={containerStyle}>
+      <Title title="お天気チェック" />
+      <SearchField
+        handleInputLat={handleInputLat}
+        handleInputLon={handleInputLon}
+        search={search}
+      />
       <WeatherResults results={weatherList} cityName={cityName} />
     </div>
   );
