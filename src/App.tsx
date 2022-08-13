@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import './App.css';
+import { css } from '@emotion/react';
 import Button from './components/Button';
 import TextField from './components/TextField';
 import WeatherResults from './components/WeatherResults';
@@ -32,7 +32,7 @@ function App() {
           handleInput={handleInputLon}
           placeholder="経度（122 ~ 154）"
         />
-        <Button text="検索" onClick={search} />
+        <Button variant="search" text="検索" onClick={search} />
       </div>
       <WeatherResults results={weatherList} cityName={cityName} />
     </div>
