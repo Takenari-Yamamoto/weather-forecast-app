@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { WeatherInfoRepo } from '../api/WeatherInfoRepo';
 import { WeatherInfo } from '../types/weather';
@@ -33,6 +34,7 @@ export const useSearchWeather = () => {
     }
 
     setLoading(true);
+
     try {
       const res = await fetchWeatherInfo({
         lat,
@@ -41,8 +43,12 @@ export const useSearchWeather = () => {
       setCityName(res.city_name);
       setWeatherList(res.data);
     } catch (e) {
-      console.error('API error', e);
-      alert('検索に失敗しました。');
+      if (axios.isAxiosError(e)) {
+        console.error('Axios Error', e.response);
+      } else {
+        console.error('API error', e);
+      }
+      alert('検索に失敗しました');
     }
     setLoading(false);
   };
